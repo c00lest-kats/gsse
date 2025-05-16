@@ -2,6 +2,8 @@
 //josn.loads(file.get_content) //will load a json text file into a map
 //json.dump(map) //will convert the map to json string
 
+//-- Original by JoeStrout - https://forums.miniscript.org/d/117-a-json-parser-for-and-in-miniscript
+
 Json={"classID":"json","hex_digit_map":{},"escape_to":["\\","\""","\b","\t","\n","\f","\r"],"eol":char(13),"escape_from":["\\","""",char(8),char(9),char(10),char(12),char(13)],"escape_indexes":0,"white_space":" "+char(9)+char(10)+char(13),"source":"","source_len":0,"p":0}
 Json.hex_to_int=function(s)
 	r=0
