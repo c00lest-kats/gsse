@@ -1,0 +1,113 @@
+string.color=function(self,color)
+if color.lower=="blue" then color="0080ff"
+if color.lower=="yellow" then color="ffff00"
+if color.lower=="black" then color="000000"
+if color.lower=="grey" or color.lower=="gray" then color="808080"
+if color.lower=="white" then color="ffffff"
+if color.lower=="green" then color="00ff00"
+if color.lower=="red" then color="ff0000"
+return "<color=#"+color+">"+self+"</color>"
+end function
+color=@string.color
+string.mark=function(self,mark)
+if mark.lower=="blue" then mark="0080ffaa"
+if mark.lower=="yellow" then mark="ffff00aa"
+if mark.lower=="black" then mark="000000aa"
+if mark.lower=="grey" or mark.lower=="gray" then mark="808080aa"
+if mark.lower=="white" then mark="ffffffaa"
+if mark.lower=="green" then mark="00ff00aa"
+if mark.lower=="red" then mark="ff0000aa"
+return "<mark=#"+mark+">"+self+"</mark>"
+end function
+mark=@string.mark
+string.bold=function(self)
+return "<b>"+self+"</b>"
+end function
+bold=@string.bold
+string.underline=function(self)
+return "<u>"+self+"</u>"
+end function
+string.ul=@string.underline
+underline=@string.underline
+ul=@string.underline
+string.alpha=function(self,alpha)
+return "<alpha=#"+alpha+">"+self+"<alpha=#ff>"
+end function
+alpha=@string.alpha
+string.startswith=function(self,strstart)
+return self[:len(strstart)]==strstart
+end function
+startswith=@string.startswith
+string.endswith=function(self,strend)
+return self[-len(strend):]==strend
+end function
+endswith=@string.endswith
+string.tagstrip=function(self)
+return self.replace("<(.+?)[\s]*\/?[\s]*>","")
+end function
+tagstrip=@string.tagstrip
+string.format=function(self,params)
+str_parts=self.split("{}")
+if len(str_parts)-1!=len(params) then return 
+out=""
+c=0
+for part in str_parts
+out=out+part
+if c<len(params) then out=out+str(params[c])
+c=c+1
+end for
+return out
+end function
+format=@string.format
+printf=function(s,params)
+str_parts=s.split("{}")
+if len(str_parts)-1!=len(params) then return 
+out=""
+c=0
+for part in str_parts
+out=out+part
+if c<len(params) then out=out+str(params[c])
+c=c+1
+end for
+print(out)
+end function
+format_table=function(csv)
+t="-"
+s="|"
+c="+"
+csv_parts=csv.split(char(10))
+headers=csv_parts[0]
+data=csv_parts[1:]
+ltable=[]
+for header in headers.split(",")
+ltable.push(len(header))
+end for
+for row in data
+index=0
+for column in row.split(",")
+if len(column)>ltable[index] then ltable[index]=len(column)
+index=index+1
+end for
+end for
+top_line=c
+for i in ltable
+top_line=top_line+t*(i+2)+c
+end for
+out=top_line+"\n"
+index=0
+for header in headers.split(",")
+out=out+s+" "+header+(" "*(1+ltable[index]-len(header)))
+index=index+1
+end for
+out=out+"|\n"+top_line+"\n"
+for row in data
+index=0
+for column in row.split(",")
+out=out+s+" "+column+(" "*(1+ltable[index]-len(column)))
+index=index+1
+end for
+out=out+"|\n"
+end for
+out=out+top_line
+return out
+end function

@@ -525,4 +525,102 @@ print(myString.tagstrip)
 print(tagstrip(myString))
 ```
 </details>
+
+<details>
+<summary><strong><code>format(string, params)</code></strong></summary>
+<br>
+
+Formats a string to include the params.
+
+#### **Parameters**
+- `string` *(string)*: The string that needs to be formatted.
+- `params` *(list)*: A list with parameters that need to be included into the string.
+
+#### **Returns**
+- *(string|null)*: The formatted string to include the params. Or null when something went wrong.
+
+#### **Example**
+```lua
+myString.format([name])
+format("Name: {}", [name])
+```
+</details>
+
+<details>
+<summary><strong><code>printf(string, params)</code></strong></summary>
+<br>
+
+Prints a formatted string that includes the params.
+
+#### **Parameters**
+- `string` *(string)*: The string that needs to be formatted.
+- `params` *(list)*: A list with parameters that need to be included into the string.
+
+#### **Returns**
+- *(null)*: This returns nothing.
+
+#### **Example**
+```lua
+printf("Name: {}", [name])
+```
+</details>
+
+<details>
+<summary><strong><code>format_table(csv)</code></strong></summary>
+<br>
+
+Formats a string in a table format.
+
+#### **Parameters**
+- `csv` *(string)*: Csv that needs to be formatted to a table.
+
+#### **Returns**
+- *(string)*: The formatted table.
+
+#### **Example**
+```lua
+print(format_table("#,username,password\n0,admin,s3cure!\n1,user,welcome123"))
+```
+</details>
+</details>
+
+
+<details>
+<summary><strong>📦 Module: <code>Error</code></strong></summary>
+<br>
+
+<details>
+<summary><strong><code>Error.New(message)</code></strong></summary>
+<br>
+
+Creates a new Error object.
+
+#### **Parameters**
+- `message` *(string)*: The error message.
+
+#### **Returns**
+- *(Error)*: An Error object.
+
+#### **Example**
+```lua
+return Error.New("Error: could not...")
+if Error.New("Error: could not...") isa Error then print("isa works to verify errors")
+```
+</details>
+
+<details>
+<summary><strong><code>Error.Log(self)</code></strong></summary>
+<br>
+
+Prints the error message associated with the Error object.
+
+#### **Parameters**
+- `self` *(Error)*: The error that you want to print to the screen.
+
+#### **Example**
+```lua
+Error.Log(myError)
+myError.Log
+```
+</details>
 </details>
